@@ -27,17 +27,27 @@ var options = {
 }
 app.use(express.static('public', options))
 
+const multer = require('multer');
+const upload = multer();
+
+app.use('/send', upload.single('file'), (req, res) => {
+  console.log(JSON.stringify(req.params,null,2))
+  console.log(req.method)
+
+  const formData = req.body;
+  console.log('form data', formData);
+  res.sendStatus(200);
+});
 
 app.use('/upload/:id?', async (req, res) => {
+  console.log(req.method, req.params)
+  console.log(req.body)
   res.statusCode = 307
   res.writeHead('307','Redirect Temporary', {
-    'Location': `https://www.google.com/search?q=${req.params.id || 'rick roll'}`
+    'Location': `/send?q=${req.params.id}`
+    // 'Location': `https://www.google.com/search?q=${req.params.id || 'rick roll'}`
   }).end()
 })
-
-app.get('/.well-known/acme-challenge/Of83JSoCssJj2DtyLKMEM9F9VGpt_rKcp6fUm7R0UmA', function(req, res, next) {
-  res.send('Of83JSoCssJj2DtyLKMEM9F9VGpt_rKcp6fUm7R0UmA.inKFcraL59HWMXaKLVSNG1NPgp6ZBATgIr9FhGP8Oig');
-});
 
 // #############################################################################
 // Log echo requests
