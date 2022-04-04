@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600&display=swap");
+
+body {
+  font-family: "Inter";
+}
+
+label, button {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+input, textarea {
+  border: 3px solid #eee;
+  padding: .4em 1em;
+  border-radius: 6px;
+}
+
+form {
+  display: grid;
+  grid-row-gap: 10px;
+  justify-content: center;
+}
+
+button {
+  margin-top: 10px;
+  background: #133EF5;
+  color: #fff;
+  padding: 10px 0;
+  border: 0;
+  border-radius: 6px;
+}
